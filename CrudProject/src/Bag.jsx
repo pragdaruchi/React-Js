@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 export default function Bag() {
   const [cart, setCart] = useState([]);
-    const [count, setCount] = useState(0); 
   
   useEffect(() => {
     const allData = JSON.parse(localStorage.getItem('cart')) || [];
