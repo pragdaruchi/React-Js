@@ -6,6 +6,7 @@ export default function Sign() {
   const navigate = useNavigate();
   const [formdata,setFormdata] = useState({})
   const [record,setRecord] =useState([])
+   const [showPassword, setShowPassword] = useState(false);
   
   useEffect(()=>{
     fetchRecord()
@@ -27,6 +28,7 @@ export default function Sign() {
         password : ""
        })
   })
+  
   }  
 const fetchRecord = async ()=>{
     await axios.get("http://localhost:5000/users").then((res)=>{
@@ -40,7 +42,10 @@ const fetchRecord = async ()=>{
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <input type="text" placeholder="Enter Your Name" name="name" onChange={handleChange} className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" />
         <input type="text" placeholder="Enter Your Mail" name="mail" onChange={handleChange} className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"/>
-        <input type="password" placeholder="Enter Your Password" name="password" onChange={handleChange} className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"/>
+       <div className="relative">
+  <input type={showPassword ? "text" : "password"} placeholder="Enter Your Password" name="password" onChange={handleChange} className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none w-full"/>
+<button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-2 text-blue-600 text-sm font-medium">{showPassword ? "Hide" : "Show"}</button>
+          </div>
         <button type="submit" className="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition" onClick={() => navigate("/login")}>Sign Up</button>
       </form>
     </div>
