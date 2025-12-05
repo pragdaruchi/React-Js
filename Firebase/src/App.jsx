@@ -4,7 +4,8 @@ import Register from './Components/Register'
 import Login from './Components/Login'
 import Dashboard from './Components/Dashboard'
 
-export default function App() {
+export default function App()
+  {
   return (
     <>
  <BrowserRouter>
